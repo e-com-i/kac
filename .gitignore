@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# jetbrains ide
+.idea/
+
+# claude code local config
+.claude/
