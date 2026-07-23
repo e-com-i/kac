@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./chatbot.module.css";
 import type { Lead } from "@/lib/chat/types";
 
@@ -11,15 +14,29 @@ const ROWS: { key: keyof Lead; label: string }[] = [
 ];
 
 export function SummaryCard({ lead }: { lead: Lead }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className={styles.done}>
-      <h4 className={styles.doneTitle}>✓ Shared with KAC</h4>
-      {ROWS.map(({ key, label }) => (
-        <div key={key} className={styles.doneRow}>
-          <b className={styles.doneLabel}>{label}</b>
-          <span>{lead[key]}</span>
+      <button
+        type="button"
+        className={styles.doneToggle}
+        onClick={() => setExpanded((prev) => !prev)}
+      >
+        <span>✓ Shared with KAC</span>
+        <span className={styles.doneChevron}>{expanded ? "▲" : "▼"}</span>
+      </button>
+
+      {expanded && (
+        <div className={styles.doneBody}>
+          {ROWS.map(({ key, label }) => (
+            <div key={key} className={styles.doneRow}>
+              <b className={styles.doneLabel}>{label}</b>
+              <span>{lead[key]}</span>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }
