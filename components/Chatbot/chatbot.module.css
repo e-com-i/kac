@@ -317,3 +317,25 @@
   width: 20px;
   height: 20px;
 }
+.doneToggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.doneChevron {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.doneBody {
+  margin-top: 10px;
+}
