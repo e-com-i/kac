@@ -1,9 +1,9 @@
 const photos = [
-  { src: "/assets/g1.jpg", alt: "Group photo" },
-  { src: "/assets/g2.jpg", alt: "Runners" },
-  { src: "/assets/g3.jpg", alt: "Yoga" },
-  { src: "/assets/g4.jpg", alt: "Cyclists" },
-  { src: "/assets/g5.jpg", alt: "Team with KAC flag" },
+  { src: "/assets/g6.jpg", alt: "Group photo" },
+  { src: "/assets/g7.jpg", alt: "Runners" },
+  { src: "/assets/g8.jpg", alt: "Yoga" },
+  { src: "/assets/g9.jpg", alt: "Cyclists" },
+  { src: "/assets/g10.jpg", alt: "Team with KAC flag" },
 ];
 
 export default function Gallery() {
