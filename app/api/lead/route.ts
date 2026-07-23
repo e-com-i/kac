@@ -18,6 +18,18 @@ function isValidLead(value: unknown): value is Lead {
   );
 }
 
+const GOOGLE_FORM_ID =
+  "1FAIpQLSfCI8PtRVBDm_f0HNAv5K2pVpyxbp8XeMFn1YOIkSxDCabctg";
+
+const ENTRY_IDS = {
+  name: "entry.661025279",
+  phone: "entry.1041340059",
+  email: "entry.1230124458",
+  city: "entry.1500550885",
+  interests: "entry.816613195",
+  help: "entry.1635812692",
+};
+
 export async function POST(request: Request) {
   let body: unknown;
   try {
@@ -36,11 +48,34 @@ export async function POST(request: Request) {
     );
   }
 
-  // Server-side log for now — visible in the Next.js server console.
-  console.log("[lead] captured:", body);
+  const formData = new URLSearchParams();
+  formData.append(ENTRY_IDS.name, body.name);
+  formData.append(ENTRY_IDS.phone, body.phone);
+  formData.append(ENTRY_IDS.email, body.email);
+  formData.append(ENTRY_IDS.city, body.city);
+  formData.append(ENTRY_IDS.interests, body.interests);
+  formData.append(ENTRY_IDS.help, body.help);
 
-  // TODO: persist to Google Sheet (Apps Script webhook) / Formspree — see README "free sink" options
-  // e.g. await fetch(process.env.LEAD_SINK_WEBHOOK_URL, { method: "POST", body: JSON.stringify(body) });
+  try {
+    const res = await fetch(
+      `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData.toString(),
+      }
+    );
 
-  return NextResponse.json({ ok: true });
+    console.log("[lead] submitted to Google Form:", body.name, res.status);
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[lead] Google Form submission failed:", err);
+    return NextResponse.json(
+      { ok: false, error: "Failed to submit lead" },
+      { status: 500 }
+    );
+  }
 }
