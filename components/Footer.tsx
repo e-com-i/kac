@@ -58,13 +58,13 @@ export default function Footer() {
                 <span className="ic">
                   <Phone strokeWidth={2} />
                 </span>
-                +91 98745 67890
+                +91 8105060097
               </li>
               <li>
                 <span className="ic">
                   <Mail strokeWidth={2} />
                 </span>
-                hello@kolkataathleticcommunity.org
+                kolkataathleticcommunity@gmail.com
               </li>
               <li>
                 <span className="ic">
