@@ -61,7 +61,7 @@ const QUICK_REPLY_ANSWERS: Record<string, string> = {
   "where are you located?":
     "We're based in Kolkata, West Bengal, India — and we run programs across the city.",
   "talk to a human":
-    "Of course! You can reach the KAC team directly at hello@kolkataathleticcommunity.org or +91 98745 67890.",
+    "Of course! You can reach the KAC team directly at kolkataathleticcommunity@gmail.com or +91 81050 60097.",
 };
 
 function nextPendingField(lead: Lead): keyof Lead | null {
